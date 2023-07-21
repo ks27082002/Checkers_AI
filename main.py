@@ -1,7 +1,7 @@
 import pygame
 from checkers.constants import WIDTH, HEIGHT, SQUARE_SIZE, RED, WHITE
 from checkers.game import Game
-from minimax.algorithm import minimax
+from AlphaBeta_Pruning.algorithm import alpha_beta_pruning
 
 FPS = 60
 
@@ -23,7 +23,7 @@ def main():
         clock.tick(FPS)
         
         if game.turn == WHITE:
-            value, new_board = minimax(game.get_board(), 3, WHITE, game)
+            value, new_board = alpha_beta_pruning(game.get_board(), 3, WHITE, game, float('-inf'), float('inf'))
             game.ai_move(new_board)
 
         if game.winner() != None:
